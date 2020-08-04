@@ -5,6 +5,8 @@ import logo from "../assets/logo.svg"
 
 import { NavLink } from 'react-router-dom';
 
+import { COLORS } from "../../src/components/styles/Constants";
+
 const Sidebar = () => {
     return (
         <Wrapper>
@@ -29,26 +31,23 @@ const Sidebar = () => {
 
 const Wrapper = styled.aside`
     height: 100vw;
-    width: 30%;
-    font-size: 16px;
-    font-weight: 600;
+    width: 25%;
     border-right: 1px solid lightgray;
 `;
 
 const Navigation = styled.ul`
     display: flex;
     flex-direction: column;
-    font-size: 22px;
+    font-size: 20px;
+    font-weight: 600;
     list-style-type:none;
-  `
+`
 
 const NavigationLink = styled(NavLink)`
   text-decoration: none;
-  margin-left: 15px;
 
   &.selected{
-    color: red;
-    text-decoration-line: underline;
+    color: ${COLORS.primary};
   }
 `
 
