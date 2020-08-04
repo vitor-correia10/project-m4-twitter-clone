@@ -20,6 +20,7 @@ import GlobalStyles from "../components/styles/GlobalStyle";
 const App = () => {
   return (
     <Router>
+      <GlobalStyles />
       <Switch>
         <Sidebar />
         <Route exact path="/">
