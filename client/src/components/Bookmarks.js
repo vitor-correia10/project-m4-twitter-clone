@@ -1,12 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
 
 const Bookmarks = () => {
     return (
-        <>
-            <Link to="/bookmarks">Bookmarks</Link>
-        </>
+        <Wrapper>Hello Bookmarks</Wrapper>
     )
 };
+
+
+
+const Wrapper = styled.div`
+    font-size: 100px;
+`
 
 export default Bookmarks;

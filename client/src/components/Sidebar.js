@@ -42,7 +42,7 @@ const Wrapper = styled.aside`
 `;
 
 const Image = styled.img`
-    width: 200px;
+    width: 80px;
     margin-bottom: 20px;
 `
 
@@ -56,10 +56,17 @@ const Navigation = styled.ul`
 
 const List = styled.li`
     margin-bottom: 20px;
+    padding: 5px;
 `
 
 const NavigationLink = styled(NavLink)`
   text-decoration: none;
+
+  &.hover{
+        background: black;
+        padding: 10px;
+        color: white;
+    }
 
   &.selected{
     color: ${COLORS.primary};
@@ -75,6 +82,7 @@ const Button = styled.button`
     max-width: 180px;
     color: white;
     font-size: 16px;
+    margin-top: 5px;
 `
 
 export default Sidebar;
