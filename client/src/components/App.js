@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 
 import { CurrentUserContext } from "./CurrentUserContext";
+import { FiLoader } from "react-icons/fi";
 
 //Components
 import Bookmarks from "./Bookmarks";
@@ -27,7 +28,7 @@ const App = () => {
   return (
     <Router>
       <GlobalStyles />
-      {loading ? <Load>... Loading</Load> :
+      {loading ? <Load> <FiLoader /></Load> :
         <Wrapper>
           <Sidebar />
           <Main>
@@ -61,7 +62,13 @@ const Load = styled.div`
   height: 100vh;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
+  font-size: 24px;
+  animation: spin 4s infinite linear;
+
+  @keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
 `
 const Wrapper = styled.div`
   display: flex;
