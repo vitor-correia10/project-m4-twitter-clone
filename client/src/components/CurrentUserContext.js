@@ -1,5 +1,4 @@
 import React from "react";
-import moment from 'moment';
 
 export const CurrentUserContext = React.createContext();
 
@@ -9,11 +8,15 @@ export const CurrentUserProvider = ({ children }) => {
 
     React.useEffect(() => {
         const fetchUser = async () => {
-            const response = await fetch("/api/me/profile");
-            const user = await response.json();
-            if (loading) {
-                setCurrentUser(user.profile);
-                setLoading(false);
+            try {
+                const response = await fetch("/api/me/profile");
+                const user = await response.json();
+                if (loading) {
+                    setCurrentUser(user.profile);
+                    setLoading(false);
+                }
+            } catch (err) {
+                console.log(err);
             }
         };
         fetchUser();
@@ -23,7 +26,7 @@ export const CurrentUserProvider = ({ children }) => {
         <CurrentUserContext.Provider
             value={{
                 currentUser,
-                loading
+                loading,
             }}>
             {children}
         </CurrentUserContext.Provider>
