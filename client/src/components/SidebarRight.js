@@ -9,7 +9,7 @@ export const SidebarRight = () => {
 
 const Wrapper = styled.div`
     @media (min-width: 800px) {
-        height: 100vh;
+        
         width: 20%;
         min-width: 100px;
         border-left: 1px solid lightgray;

@@ -33,7 +33,6 @@ const Sidebar = () => {
 
 //Style
 const Wrapper = styled.aside`
-    height: 100vh;
     width: 25%;
     min-width: 240px;
     border-right: 1px solid lightgray;

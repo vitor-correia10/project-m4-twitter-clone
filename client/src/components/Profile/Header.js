@@ -17,7 +17,7 @@ const Header = ({
   numFollowing,
   numFollowers
 }) => {
-  const date = moment().format('MMMM YYYY');
+  const date = moment(joined).format('MMMM YYYY');
   return (
     <>
       <Banner src={bannerSrc} />

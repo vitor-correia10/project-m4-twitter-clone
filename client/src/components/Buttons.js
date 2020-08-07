@@ -21,12 +21,13 @@ export const Button2 = ({ children }) => {
 
 const SmallButton = styled.button`
     background: ${COLORS.primary};
-    padding: 8px;
+    padding: 10px;
     font-weight: 600;
     border-radius: 25px;
     color: white;
     font-size: 14px;
     margin-top: 5px;
+    margin-left: 10px;
 `
 
 const MediumButton = styled.button`

@@ -6,14 +6,15 @@ import {
 } from "react-router-dom";
 
 import { CurrentUserContext } from "./CurrentUserContext";
+import { TweetContext } from "./Tweet/Tweet";
 import { FiLoader } from "react-icons/fi";
 
 //Components
 import Bookmarks from "./Bookmarks";
-import HomeFeed from "./HomeFeed";
+import HomeFeed from "./home/HomeFeed";
 import Notifications from "./Notifications";
-import Profile from "./Profile/Profile";
-import TweetDetails from "./TweetDetails";
+import Profile from "./profile/Profile";
+import TweetDetails from "./Tweet/TweetDetails";
 import Sidebar from "./Sidebar";
 
 //Style
@@ -25,6 +26,9 @@ const App = () => {
   const {
     loading
   } = React.useContext(CurrentUserContext);
+  const {
+    tweetById
+  } = React.useContext(TweetContext);
   return (
     <Router>
       <GlobalStyles />
@@ -59,7 +63,6 @@ const App = () => {
 
 const Load = styled.div`
   display: flex;
-  height: 100vh;
   justify-content: center;
   align-items: center;
   font-size: 24px;

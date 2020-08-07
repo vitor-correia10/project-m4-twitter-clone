@@ -10,7 +10,7 @@ const Bookmarks = () => {
 
 
 const Wrapper = styled.div`
-    font-size: 100px;
+
 `
 
 export default Bookmarks;
