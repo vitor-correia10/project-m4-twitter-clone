@@ -8,6 +8,7 @@ import TweetDetails from "../Tweet/TweetDetails";
 
 //style
 import styled from 'styled-components';
+import HomeFeed from "../home/HomeFeed";
 
 const Profile = () => {
     const {
@@ -28,11 +29,6 @@ const Profile = () => {
                 numFollowing={currentUser.numFollowing}
                 numFollowers={currentUser.numFollowers}
             />
-
-            <TweetDetails
-
-            />
-
         </>
     )
 };

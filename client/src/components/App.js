@@ -67,6 +67,7 @@ const Load = styled.div`
   align-items: center;
   font-size: 24px;
   animation: spin 4s infinite linear;
+  height: 100vh;
 
   @keyframes spin {
     from {transform:rotate(0deg);}

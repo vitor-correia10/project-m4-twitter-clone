@@ -1,21 +1,34 @@
 import React from "react";
 import styled from "styled-components";
+import { FiRepeat } from "react-icons/fi";
+import moment from 'moment';
 
 import { SmallAvatar } from "../Avatar";
-
-import moment from 'moment';
+import { ActionButtons } from '../ActionButtons';
 
 const TweetDetails = ({
     tweet
 }) => {
     const date = moment(tweet.timestamp).format("MMM Do");
+
     let mediaURL;
     if (tweet.media[0]) {
         mediaURL = tweet.media[0].url;
     }
+
+    let retweet;
+    if (tweet.retweetFrom) {
+        retweet = tweet.retweetFrom.displayName;
+    }
+
     return (
         <>
             <Wrapper>
+                {retweet && (
+                    <Retweet>
+                        <FiRepeat /> {retweet} retweeted
+                    </Retweet>
+                )}
                 <TweetData>
                     <SmallAvatar avatarSrc={tweet.author.avatarSrc} />
                     <TweetText>
@@ -27,6 +40,7 @@ const TweetDetails = ({
                     </TweetText>
                 </TweetData>
                 <TweetImage src={mediaURL} />
+                <ActionButtons />
             </Wrapper>
         </>
     )
@@ -34,7 +48,12 @@ const TweetDetails = ({
 
 const Wrapper = styled.div`
   width: 100%;
-  padding: 10px;
+  padding: 15px;
+  border-bottom: 1px solid lightgray;
+
+  &:hover{
+      background: #F0F0F0;
+  }
 `
 const DisplayName = styled.div`
     font-size: 15px;
@@ -72,4 +91,10 @@ const TweetImage = styled.img`
     border-radius: 10px;
     margin: 10px auto;
 `
+
+const Retweet = styled.div`
+    padding: 5px 30px;
+    color: darkgray;
+`
+
 export default TweetDetails;

@@ -31,6 +31,7 @@ const IconButton = styled.button`
     border: none;
     background: none;
     font-size: 20px;
+    cursor: pointer;
 `
 
 
