@@ -17,7 +17,6 @@ const HomeFeed = () => {
         <>
             <HomeHeader />
             {Object.values(tweetIds).map((id) => {
-                console.log('HomeFeed', id)
                 return (
                     <TweetDetails
                         tweet={tweetById[id]} key={id}

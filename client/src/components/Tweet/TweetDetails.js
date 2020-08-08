@@ -39,8 +39,10 @@ const TweetDetails = ({
                         <TweetDescription>{tweet.status}</TweetDescription>
                     </TweetText>
                 </TweetData>
-                <TweetImage src={mediaURL} />
-                <ActionButtons />
+                <Feed>
+                    <TweetImage src={mediaURL} />
+                    <ActionButtons />
+                </Feed>
             </Wrapper>
         </>
     )
@@ -95,6 +97,12 @@ const TweetImage = styled.img`
 const Retweet = styled.div`
     padding: 5px 30px;
     color: darkgray;
+`
+
+const Feed = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding-left: 60px;
 `
 
 export default TweetDetails;

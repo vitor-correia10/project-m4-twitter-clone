@@ -5,14 +5,14 @@ import { FiHeart, FiMessageCircle, FiRepeat, FiShare } from "react-icons/fi";
 export const ActionButtons = () => {
     return (
         <Wrapper>
-            <IconButton>
-                <FiHeart />
-            </IconButton>
-            <IconButton>
+            <IconButton hover="message">
                 <FiMessageCircle />
             </IconButton>
-            <IconButton>
+            <IconButton hover="retweet">
                 <FiRepeat />
+            </IconButton>
+            <IconButton hover="heart">
+                <FiHeart />
             </IconButton>
             <IconButton>
                 <FiShare />
@@ -32,6 +32,13 @@ const IconButton = styled.button`
     background: none;
     font-size: 20px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+
+    &:hover{
+        background: ${props => props.hover === "heart" ? "rgba(255,204,203, 0.5)" : ("retweet" ? "rgba(208,240,192, 0.5)" : "rgba(173,216,230, 0.5)")};
+        border-radius: 50%;
+        padding: 8px;
+    }
 `
-
-
