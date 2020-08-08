@@ -4,10 +4,10 @@ import Header from "./Header";
 
 import { CurrentUserContext } from "../CurrentUserContext";
 import { TweetContext } from "../Tweet/Tweet";
-import TweetDetails from "../Tweet/TweetDetails";
+import TweetFeed from "../Tweet/TweetFeed";
 
 //style
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import HomeFeed from "../home/HomeFeed";
 
 const Profile = () => {

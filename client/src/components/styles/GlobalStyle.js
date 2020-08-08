@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components/macro";
 
 export default createGlobalStyle`
     *,
@@ -36,6 +36,16 @@ export default createGlobalStyle`
     }
     button{
         outline: none;
+    }
+
+    a {
+        text-decoration: inherit;
+        color: inherit;
+    }
+
+    a:visited {
+        text-decoration: inherit;
+        color: inherit;
     }
         
     /* End reset CSS */

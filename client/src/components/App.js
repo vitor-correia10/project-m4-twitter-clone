@@ -14,11 +14,11 @@ import Bookmarks from "./Bookmarks";
 import HomeFeed from "./home/HomeFeed";
 import Notifications from "./Notifications";
 import Profile from "./profile/Profile";
-import TweetDetails from "./Tweet/TweetDetails";
+import TweetDetails from "./TweetDetails";
 import Sidebar from "./Sidebar";
 
 //Style
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import GlobalStyles from "../components/styles/GlobalStyle";
 import { SidebarRight } from "./SidebarRight";
 

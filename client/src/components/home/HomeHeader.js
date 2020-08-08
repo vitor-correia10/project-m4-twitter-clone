@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { Button1 } from "../Buttons";
 import { SmallAvatar } from "../Avatar";
 import { CurrentUserContext } from "../CurrentUserContext";
@@ -36,7 +36,7 @@ const Head = styled.div`
 `
 const Text = styled.div`
     border-bottom: 8px solid lightgray;
-    padding: 5px;
+    padding: 10px;
 `
 
 const Message = styled.div`
@@ -45,7 +45,7 @@ const Message = styled.div`
 
 const TextArea = styled.textarea`
     width: 100%;
-    height: 100px;
+    height: 70px;
     border: none;
     resize: none;
     outline: none;

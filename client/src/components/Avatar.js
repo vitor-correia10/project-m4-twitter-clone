@@ -1,12 +1,12 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 export const SmallAvatar = ({ avatarSrc }) => {
-    return (
+  return (
 
-        <Image src={avatarSrc} />
+    <Image src={avatarSrc} />
 
-    );
+  );
 };
 
 const Image = styled.img`

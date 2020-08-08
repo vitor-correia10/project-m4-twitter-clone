@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { FiHeart, FiMessageCircle, FiRepeat, FiShare } from "react-icons/fi";
 
 export const ActionButtons = () => {
@@ -21,7 +21,7 @@ export const ActionButtons = () => {
     )
 }
 
-const Wrapper = styled.ul`
+const Wrapper = styled.div`
     display: flex;
     list-style: none;
     justify-content: space-around;

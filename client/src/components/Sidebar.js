@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { COLORS } from "../../src/components/styles/Constants";
 import { Button2 } from "./Buttons";
 //style
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import Logo from "../assets/logo.svg";
 import { FiHome, FiBell, FiBookmark, FiUser } from "react-icons/fi";
 

@@ -6,7 +6,7 @@ import moment from 'moment';
 import { SmallAvatar } from "../Avatar";
 import { ActionButtons } from '../ActionButtons';
 
-const TweetDetails = ({
+const TweetFeed = ({
     tweet
 }) => {
     const date = moment(tweet.timestamp).format("MMM Do");
@@ -50,7 +50,7 @@ const TweetDetails = ({
 
 const Wrapper = styled.div`
   width: 100%;
-  padding: 15px;
+  padding: 10px;
   border-bottom: 1px solid lightgray;
 
   &:hover{
@@ -97,6 +97,7 @@ const TweetImage = styled.img`
 const Retweet = styled.div`
     padding: 5px 30px;
     color: darkgray;
+    font-size: 14px;
 `
 
 const Feed = styled.div`
@@ -105,4 +106,4 @@ const Feed = styled.div`
     padding-left: 60px;
 `
 
-export default TweetDetails;
+export default TweetFeed;
