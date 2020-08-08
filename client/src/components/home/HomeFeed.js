@@ -14,13 +14,11 @@ const HomeFeed = () => {
         tweetById,
         tweetIds
     } = React.useContext(TweetContext);
-    console.log('HomeFeed', tweetIds)
+
     return (
         <>
             <HomeHeader />
             {tweetIds.map((id) => {
-                console.log('HomeFeed *****', tweetById[id].id)
-
                 return (
                     <Link to={`/tweet/${id}`}>
                         <Tweet

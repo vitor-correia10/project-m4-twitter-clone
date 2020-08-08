@@ -9,7 +9,23 @@ export const TweetContext = React.createContext();
 export const TweetProvider = ({ children }) => {
     const [tweetById, setTweetById] = React.useState([]);
     const [tweetIds, setTweetIds] = React.useState([]);
+    const [numOfLikes, setNumOfLikes] = React.useState();
+    const [numOfRetweets, setNumOfRetweets] = React.useState();
+    const [isLiked, setIsLiked] = React.useState(false);
+    const [isRetweeted, setIsRetweeted] = React.useState(false);
     const [loading, setLoading] = React.useState(true);
+
+    const handleToggleLike = () => {
+        setIsLiked(!isLiked);
+
+        !isLiked ? setNumOfLikes(numOfLikes + 1) : setNumOfLikes(numOfLikes - 1);
+    };
+
+    const handleToggleRetweet = () => {
+        setIsRetweeted(!isRetweeted);
+
+        !isRetweeted ? setNumOfRetweets(numOfRetweets + 1) : setNumOfRetweets(numOfRetweets - 1);
+    };
 
     React.useEffect(() => {
         const fetchTweet = async () => {
@@ -19,9 +35,8 @@ export const TweetProvider = ({ children }) => {
                 if (loading) {
                     setTweetById(tweet.tweetsById);
                     setTweetIds(tweet.tweetIds);
+                    setNumOfLikes(tweet.numOfLikes);
                     setLoading(false);
-
-                    console.log(tweet.tweetsById)
                 }
             } catch (err) {
                 console.log('Error Tweet Message', err);
@@ -37,7 +52,13 @@ export const TweetProvider = ({ children }) => {
         value={{
             tweetById,
             tweetIds,
-            loading
+            loading,
+            handleToggleLike,
+            handleToggleRetweet,
+            isRetweeted,
+            isLiked,
+            numOfLikes,
+            numOfRetweets,
         }}>
         {children}
     </TweetContext.Provider>

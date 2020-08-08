@@ -7,7 +7,7 @@ import { SmallAvatar } from "../Avatar";
 import { ActionButtons } from '../ActionButtons';
 
 const Tweet = ({
-    tweet
+    tweet,
 }) => {
     const date = moment(tweet.timestamp).format("MMM Do");
 
@@ -41,8 +41,10 @@ const Tweet = ({
                 </TweetData>
                 <Feed>
                     <TweetImage src={mediaURL} />
-                    <ActionButtons />
                 </Feed>
+                <Action>
+                    <ActionButtons />
+                </Action>
             </Wrapper>
         </>
     )
@@ -101,9 +103,10 @@ const Retweet = styled.div`
 `
 
 const Feed = styled.div`
-    display: flex;
-    flex-direction: column;
     padding-left: 60px;
+`
+const Action = styled.div`
+    padding-left: 40px;
 `
 
 export default Tweet;

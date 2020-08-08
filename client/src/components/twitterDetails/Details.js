@@ -9,7 +9,7 @@ import { ActionButtons } from '../ActionButtons';
 const Details = ({
     tweet
 }) => {
-    const date = moment(tweet.timestamp).format("MMM Do");
+    const date = moment(tweet.timestamp).format("h:mm a • MMM Do YYYY •");
 
     let mediaURL;
     if (tweet.media[0]) {
@@ -34,12 +34,13 @@ const Details = ({
                     <TweetText>
                         <TweetAuthor>
                             {tweet.author.displayName}
-                            <Handle>@{tweet.author.handle} • {date}</Handle>
                         </TweetAuthor>
-                        <TweetDescription>{tweet.status}</TweetDescription>
+                        <Handle>@{tweet.author.handle}</Handle>
                     </TweetText>
                 </TweetData>
+                <TweetDescription>{tweet.status}</TweetDescription>
                 <TweetImage src={mediaURL} />
+                <Date>{date} Critter web app</Date>
                 <ActionButtons />
             </Wrapper>
         </>
@@ -73,7 +74,6 @@ const TweetAuthor = styled.p`
 const Handle = styled.span`
     color: darkgray;
     font-size: 12px;
-    padding-left: 5px;
     font-weight: 400;
 `
 
@@ -96,6 +96,12 @@ const Retweet = styled.div`
     padding: 5px 30px;
     color: darkgray;
     font-size: 14px;
+`
+
+const Date = styled.p`
+    font-size: 14px;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 10px;
 `
 
 export default Details;
