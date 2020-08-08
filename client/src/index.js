@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 
 import { CurrentUserProvider } from "./components/CurrentUserContext";
-import { TweetProvider } from "./components/Tweet/Tweet";
+import { TweetProvider } from "./components/Tweet/TweetContext";
 
 const rootElement = document.getElementById('root');
 

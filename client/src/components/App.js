@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 
 import { CurrentUserContext } from "./CurrentUserContext";
-import { TweetContext } from "./Tweet/Tweet";
+import { TweetContext } from "./Tweet/TweetContext";
 import { FiLoader } from "react-icons/fi";
 
 //Components
@@ -14,7 +14,7 @@ import Bookmarks from "./Bookmarks";
 import HomeFeed from "./home/HomeFeed";
 import Notifications from "./Notifications";
 import Profile from "./profile/Profile";
-import TweetDetails from "./TweetDetails";
+import TweetDetails from "./twitterDetails/TweetDetails";
 import Sidebar from "./Sidebar";
 
 //Style

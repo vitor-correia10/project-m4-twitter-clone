@@ -1,8 +1,8 @@
 import React from "react";
 import HomeHeader from "./HomeHeader";
 
-import { TweetContext } from "../Tweet/Tweet";
-import TweetFeed from "../Tweet/TweetFeed";
+import { TweetContext } from "../Tweet/TweetContext";
+import Tweet from "../Tweet/Tweet";
 
 import { Link } from 'react-router-dom';
 
@@ -14,15 +14,16 @@ const HomeFeed = () => {
         tweetById,
         tweetIds
     } = React.useContext(TweetContext);
-    console.log('HomeFeed', TweetContext)
+    console.log('HomeFeed', tweetIds)
     return (
         <>
             <HomeHeader />
-            {Object.values(tweetIds).map((id) => {
-                console.log(tweetById[id])
+            {tweetIds.map((id) => {
+                console.log('HomeFeed *****', tweetById[id].id)
+
                 return (
-                    <Link to={`/tweet/${tweetById[id]}}`}>
-                        <TweetFeed
+                    <Link to={`/tweet/${id}`}>
+                        <Tweet
                             tweet={tweetById[id]} key={id}
                         />
                     </Link>

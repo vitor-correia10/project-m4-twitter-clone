@@ -3,8 +3,8 @@ import React from "react";
 import Header from "./Header";
 
 import { CurrentUserContext } from "../CurrentUserContext";
-import { TweetContext } from "../Tweet/Tweet";
-import TweetFeed from "../Tweet/TweetFeed";
+import { TweetContext } from "../Tweet/TweetContext";
+import Tweet from "../Tweet/Tweet";
 
 //style
 import styled from 'styled-components/macro';
