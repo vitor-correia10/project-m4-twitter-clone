@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components/macro";
 import { useParams } from "react-router-dom";
-import { TweetContext } from "../Tweet/TweetContext";
 
 import { FiLoader } from "react-icons/fi";
-
 
 import Details from "./Details"
 

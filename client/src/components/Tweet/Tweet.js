@@ -12,6 +12,7 @@ const Tweet = ({
     const date = moment(tweet.timestamp).format("MMM Do");
 
     let mediaURL;
+    console.log('Tweet', mediaURL)
     if (tweet.media[0]) {
         mediaURL = tweet.media[0].url;
     }

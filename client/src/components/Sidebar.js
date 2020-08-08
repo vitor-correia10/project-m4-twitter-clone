@@ -17,7 +17,7 @@ const Sidebar = () => {
                     <NavigationLink to="/" exact activeClassName="selected"> <FiHome /> Home</NavigationLink>
                 </List>
                 <List>
-                    <NavigationLink to="/treasurymog" exact activeClassName="selected"> <FiUser /> Profile</NavigationLink>
+                    <NavigationLink to="/profile" exact activeClassName="selected"> <FiUser /> Profile</NavigationLink>
                 </List>
                 <List>
                     <NavigationLink to="/notifications" exact activeClassName="selected"> <FiBell /> Notifications</NavigationLink>
