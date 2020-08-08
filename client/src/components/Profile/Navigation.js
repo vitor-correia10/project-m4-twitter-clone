@@ -15,10 +15,10 @@ const Navigation = () => {
                 <NavigationLink to="/profile" exact activeClassName="selected">Tweets</NavigationLink>
             </List>
             <List>
-                <NavigationLink to="/profile/media" exact activeClassName="selected">Media</NavigationLink>
+                <NavigationLink to="/media" exact activeClassName="selected">Media</NavigationLink>
             </List>
             <List>
-                <NavigationLink to="/profile/likes" exact activeClassName="selected">Likes</NavigationLink>
+                <NavigationLink to="/likes" exact activeClassName="selected">Likes</NavigationLink>
             </List>
         </Wrapper>
     )

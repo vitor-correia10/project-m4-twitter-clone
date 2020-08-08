@@ -13,12 +13,10 @@ import Tweet from "../Tweet/Tweet";
 
 //style
 import styled from 'styled-components/macro';
-import HomeFeed from "../home/HomeFeed";
 
 const Profile = () => {
     const {
         currentUser,
-        tweetById
     } = React.useContext(CurrentUserContext, TweetContext);
 
     const { handle } = useParams();
