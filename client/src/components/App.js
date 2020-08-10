@@ -10,9 +10,9 @@ import { TweetContext } from "./Tweet/TweetContext";
 import { FiLoader } from "react-icons/fi";
 
 //Components
-import Bookmarks from "./Bookmarks";
+import Bookmarks from "./bookmarks/Bookmarks";
 import HomeFeed from "./home/HomeFeed";
-import Notifications from "./Notifications";
+import Notifications from "./notifications/Notifications";
 import Profile from "./profile/Profile";
 import TweetDetails from "./twitterDetails/TweetDetails";
 import Sidebar from "./Sidebar";

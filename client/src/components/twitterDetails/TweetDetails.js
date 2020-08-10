@@ -4,7 +4,10 @@ import { useParams } from "react-router-dom";
 
 import { FiLoader } from "react-icons/fi";
 
-import Details from "./Details"
+import Details from "./Details";
+
+import Head from "../Head";
+import GoBack from "../GoBack";
 
 
 const TweetDetails = () => {
@@ -35,6 +38,7 @@ const TweetDetails = () => {
     return (
         <>
             <Head>
+                <GoBack />
                 Meow
             </Head>
             <Details
@@ -43,13 +47,6 @@ const TweetDetails = () => {
         </>
     )
 };
-
-const Head = styled.div`
-    border-bottom: 1px solid lightgray;
-    padding: 10px;
-    font-size: 22px;
-    font-weight: 600;
-`
 
 const Load = styled.div`
   display: flex;

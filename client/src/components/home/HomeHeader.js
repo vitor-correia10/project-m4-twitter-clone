@@ -3,11 +3,13 @@ import styled from "styled-components/macro";
 import { Button1 } from "../Buttons";
 import { SmallAvatar } from "../Avatar";
 import { CurrentUserContext } from "../CurrentUserContext";
+import Head from "../Head";
 
 
 const HomeHeader = () => {
     const {
         currentUser
+
     } = React.useContext(CurrentUserContext);
     return (
         <>
@@ -28,12 +30,6 @@ const HomeHeader = () => {
     )
 }
 
-const Head = styled.div`
-    border-bottom: 1px solid lightgray;
-    padding: 10px;
-    font-size: 22px;
-    font-weight: 600;
-`
 const Text = styled.div`
     border-bottom: 8px solid lightgray;
     padding: 10px;
