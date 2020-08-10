@@ -4,10 +4,10 @@ import { FiRepeat } from "react-icons/fi";
 import moment from 'moment';
 
 import { SmallAvatar } from "../Avatar";
-import { ActionButtons } from '../ActionButtons';
+import { ActionButtons } from '../buttons/ActionButtons';
 
 const Details = ({
-    tweet
+    tweet,
 }) => {
     const date = moment(tweet.timestamp).format("h:mm a • MMM Do YYYY •");
 
@@ -21,6 +21,15 @@ const Details = ({
         retweet = tweet.retweetFrom.displayName;
     }
 
+    let likes;
+    if (tweet.numLikes > 0) {
+        likes = tweet.numLikes;
+    }
+
+    let retweets;
+    if (tweet.numRetweets >= 0) {
+        retweets = tweet.numRetweets;
+    }
     return (
         <>
             <Wrapper>
@@ -41,7 +50,12 @@ const Details = ({
                 <TweetDescription>{tweet.status}</TweetDescription>
                 <TweetImage src={mediaURL} />
                 <Date>{date} Critter web app</Date>
-                <ActionButtons />
+                <ActionButtons>
+
+                    {likes}
+                    {retweets}
+                </ActionButtons>
+
             </Wrapper>
         </>
     )

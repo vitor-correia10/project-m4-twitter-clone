@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/macro";
 import moment from 'moment';
 
-import { Button1 } from "../Buttons";
+import { Button1 } from "../buttons/Buttons";
 
 import { FiMapPin, FiCalendar } from "react-icons/fi";
 

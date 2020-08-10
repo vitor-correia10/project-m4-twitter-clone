@@ -1,11 +1,11 @@
 import React from "react";
 
 import { NavLink } from 'react-router-dom';
-import { COLORS } from "../../src/components/styles/Constants";
-import { Button2 } from "./Buttons";
+import { COLORS } from "../styles/Constants";
+import { Button2 } from "../buttons/Buttons";
 //style
 import styled from 'styled-components/macro';
-import Logo from "../assets/logo.svg";
+import Logo from "../../assets/logo.svg";
 import { FiHome, FiBell, FiBookmark, FiUser } from "react-icons/fi";
 
 const Sidebar = () => {

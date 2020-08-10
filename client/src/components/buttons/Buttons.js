@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/macro";
 
-import { COLORS } from "../../src/components/styles/Constants";
+import { COLORS } from "../styles/Constants";
 
 export const Button1 = ({ children }) => {
     return (

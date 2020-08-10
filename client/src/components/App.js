@@ -15,12 +15,12 @@ import HomeFeed from "./home/HomeFeed";
 import Notifications from "./notifications/Notifications";
 import Profile from "./profile/Profile";
 import TweetDetails from "./twitterDetails/TweetDetails";
-import Sidebar from "./Sidebar";
+import Sidebar from "./sidebar/Sidebar";
 
 //Style
 import styled from "styled-components/macro";
 import GlobalStyles from "../components/styles/GlobalStyle";
-import { SidebarRight } from "./SidebarRight";
+import { SidebarRight } from "./sidebar/SidebarRight";
 
 const App = () => {
   const {

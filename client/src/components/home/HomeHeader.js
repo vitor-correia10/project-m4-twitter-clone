@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { Button1 } from "../Buttons";
+import { Button1 } from "../buttons/Buttons";
 import { SmallAvatar } from "../Avatar";
 import { CurrentUserContext } from "../CurrentUserContext";
 import Head from "../Head";
@@ -11,6 +11,17 @@ const HomeHeader = () => {
         currentUser
 
     } = React.useContext(CurrentUserContext);
+
+    const [countCharacters, setCountCharacters] = React.useState(280);
+
+    const recalculate = (e) => {
+        if (countCharacters >= 0) {
+            setCountCharacters(countCharacters - e.target.value.length);
+        } else {
+
+        }
+        console.log(countCharacters)
+    }
     return (
         <>
             <Head>
@@ -19,11 +30,11 @@ const HomeHeader = () => {
             <Text>
                 <Message>
                     <SmallAvatar avatarSrc={currentUser.avatarSrc} />
-                    <TextArea placeholder="What's happening?" />
+                    <TextArea onChange={recalculate} placeholder="What's happening?" />
                 </Message>
                 <SendMessage>
-                    280
-                <Button1> Meow </Button1>
+                    {countCharacters}
+                    <Button1> Meow </Button1>
                 </SendMessage>
             </Text>
         </>

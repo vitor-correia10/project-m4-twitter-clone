@@ -4,7 +4,7 @@ import { FiRepeat } from "react-icons/fi";
 import moment from 'moment';
 
 import { SmallAvatar } from "../Avatar";
-import { ActionButtons } from '../ActionButtons';
+import { ActionButtons } from '../buttons/ActionButtons';
 
 const Tweet = ({
     tweet,
@@ -22,6 +22,15 @@ const Tweet = ({
         retweet = tweet.retweetFrom.displayName;
     }
 
+    let likes;
+    if (tweet.numLikes > 0) {
+        likes = tweet.numLikes;
+    }
+
+    let retweets;
+    if (tweet.numRetweets >= 0) {
+        retweets = tweet.numRetweets;
+    }
     return (
         <>
             <Wrapper>
@@ -44,7 +53,10 @@ const Tweet = ({
                     <TweetImage src={mediaURL} />
                 </Feed>
                 <Action>
-                    <ActionButtons />
+                    <ActionButtons>
+                        {likes}
+                        {retweets}
+                    </ActionButtons>
                 </Action>
             </Wrapper>
         </>

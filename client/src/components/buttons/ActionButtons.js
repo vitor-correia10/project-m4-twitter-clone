@@ -2,10 +2,15 @@ import React from "react";
 import styled from "styled-components/macro";
 import { FiHeart, FiMessageCircle, FiRepeat, FiShare } from "react-icons/fi";
 
-import { TweetContext } from "./Tweet/TweetContext";
+import { TweetContext } from "../Tweet/TweetContext";
 
 export const ActionButtons = ({ onClick }) => {
-    const { numOfLikes, numOfRetweets, handleToggleLike, handleToggleRetweet } = React.useContext(TweetContext);
+    const {
+        numOfLikes,
+        numOfRetweets,
+        handleToggleLike,
+        handleToggleRetweet,
+    } = React.useContext(TweetContext);
 
     return (
         <Wrapper>
@@ -18,6 +23,7 @@ export const ActionButtons = ({ onClick }) => {
                 numOfRetweets={numOfRetweets}
             >
                 <FiRepeat />
+                <ActionNumber> {numOfRetweets}</ActionNumber>
             </IconButton>
             <IconButton
                 hover="heart"
@@ -25,6 +31,7 @@ export const ActionButtons = ({ onClick }) => {
                 numOfLikes={numOfLikes}
             >
                 <FiHeart />
+                <ActionNumber> {numOfLikes} </ActionNumber>
             </IconButton>
             <IconButton>
                 <FiShare />
@@ -53,4 +60,10 @@ const IconButton = styled.button`
         border-radius: 50%;
         padding: 8px;
     }
+`
+
+const ActionNumber = styled.span`
+    font-size: 14px;
+    padding-left: 5px;
+    color: darkgray;
 `

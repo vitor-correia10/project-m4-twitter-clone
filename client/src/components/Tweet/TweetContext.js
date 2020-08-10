@@ -37,6 +37,7 @@ export const TweetProvider = ({ children }) => {
                     setTweetIds(tweet.tweetIds);
                     setNumOfLikes(tweet.numOfLikes);
                     setLoading(false);
+                    console.log('Likes', tweet.tweetsById)
                 }
             } catch (err) {
                 console.log('Error Tweet Message', err);
@@ -53,12 +54,12 @@ export const TweetProvider = ({ children }) => {
             tweetById,
             tweetIds,
             loading,
-            handleToggleLike,
-            handleToggleRetweet,
             isRetweeted,
             isLiked,
             numOfLikes,
             numOfRetweets,
+            handleToggleLike,
+            handleToggleRetweet,
         }}>
         {children}
     </TweetContext.Provider>
