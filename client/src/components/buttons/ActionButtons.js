@@ -4,13 +4,23 @@ import { FiHeart, FiMessageCircle, FiRepeat, FiShare } from "react-icons/fi";
 
 import { TweetContext } from "../Tweet/TweetContext";
 
-export const ActionButtons = ({ onClick }) => {
+export const ActionButtons = ({ numLikes, numRetweets, id }) => {
+
     const {
-        numOfLikes,
-        numOfRetweets,
+        setNumLikes,
+        setNumRetweets,
+        isLiked,
+        isRetweeted,
         handleToggleLike,
         handleToggleRetweet,
     } = React.useContext(TweetContext);
+
+    console.log('Tweet Id in ActionButtons', id)
+
+    // React.useEffect(() => {
+    //     setNumLikes(numLikes)
+    //     setNumRetweets(numRetweets)
+    // }, [isLiked, isRetweeted]);
 
     return (
         <Wrapper>
@@ -19,19 +29,17 @@ export const ActionButtons = ({ onClick }) => {
             </IconButton>
             <IconButton
                 hover="retweet"
-                onClick={handleToggleRetweet}
-                numOfRetweets={numOfRetweets}
+                onClick={() => { handleToggleRetweet(id) }}
             >
                 <FiRepeat />
-                <ActionNumber> {numOfRetweets}</ActionNumber>
+                <ActionNumber> {numRetweets} </ActionNumber>
             </IconButton>
             <IconButton
                 hover="heart"
-                onClick={handleToggleLike}
-                numOfLikes={numOfLikes}
+                onClick={() => { handleToggleLike(id) }}
             >
                 <FiHeart />
-                <ActionNumber> {numOfLikes} </ActionNumber>
+                <ActionNumber > {numLikes} </ActionNumber>
             </IconButton>
             <IconButton>
                 <FiShare />

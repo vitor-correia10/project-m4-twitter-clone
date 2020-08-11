@@ -17,10 +17,8 @@ const HomeHeader = () => {
     const recalculate = (e) => {
         if (countCharacters >= 0) {
             setCountCharacters(countCharacters - e.target.value.length);
-        } else {
-
+            console.log(countCharacters)
         }
-        console.log(countCharacters)
     }
     return (
         <>

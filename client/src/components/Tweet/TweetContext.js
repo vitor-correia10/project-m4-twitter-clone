@@ -9,22 +9,22 @@ export const TweetContext = React.createContext();
 export const TweetProvider = ({ children }) => {
     const [tweetById, setTweetById] = React.useState([]);
     const [tweetIds, setTweetIds] = React.useState([]);
-    const [numOfLikes, setNumOfLikes] = React.useState();
-    const [numOfRetweets, setNumOfRetweets] = React.useState();
+    const [numLikes, setNumLikes] = React.useState();
+    const [numRetweets, setNumRetweets] = React.useState();
     const [isLiked, setIsLiked] = React.useState(false);
     const [isRetweeted, setIsRetweeted] = React.useState(false);
     const [loading, setLoading] = React.useState(true);
 
-    const handleToggleLike = () => {
+    const handleToggleLike = (tweetId) => {
         setIsLiked(!isLiked);
 
-        !isLiked ? setNumOfLikes(numOfLikes + 1) : setNumOfLikes(numOfLikes - 1);
+        !isLiked ? setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numLikes: tweetById[tweetId].numLikes + 1 } }) : setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numLikes: tweetById[tweetId].numLikes - 1 } });
     };
 
-    const handleToggleRetweet = () => {
+    const handleToggleRetweet = (tweetId) => {
         setIsRetweeted(!isRetweeted);
 
-        !isRetweeted ? setNumOfRetweets(numOfRetweets + 1) : setNumOfRetweets(numOfRetweets - 1);
+        !isRetweeted ? setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numRetweets: tweetById[tweetId].numRetweets + 1 } }) : setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numRetweets: tweetById[tweetId].numRetweets - 1 } });
     };
 
     React.useEffect(() => {
@@ -32,12 +32,13 @@ export const TweetProvider = ({ children }) => {
             try {
                 const response = await fetch("/api/me/home-feed");
                 const tweet = await response.json();
+                console.log(tweet)
                 if (loading) {
                     setTweetById(tweet.tweetsById);
                     setTweetIds(tweet.tweetIds);
-                    setNumOfLikes(tweet.numOfLikes);
+                    setNumLikes(tweet.numLikes);
+                    setNumRetweets(tweet.numRetweets);
                     setLoading(false);
-                    console.log('Likes', tweet.tweetsById)
                 }
             } catch (err) {
                 console.log('Error Tweet Message', err);
@@ -45,7 +46,6 @@ export const TweetProvider = ({ children }) => {
         };
         fetchTweet();
     }, []);
-
     if (loading) {
         return <Load> <FiLoader /></Load>
     }
@@ -56,8 +56,10 @@ export const TweetProvider = ({ children }) => {
             loading,
             isRetweeted,
             isLiked,
-            numOfLikes,
-            numOfRetweets,
+            numLikes,
+            numRetweets,
+            setNumLikes,
+            setNumRetweets,
             handleToggleLike,
             handleToggleRetweet,
         }}>

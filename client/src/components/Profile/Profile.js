@@ -23,7 +23,6 @@ const Profile = () => {
 
     const [profileTweets, setProfileTweets] = React.useState();
     const [loading, setLoading] = React.useState(true);
-    console.log(currentUser.handle);
 
     React.useEffect(() => {
         const fetchTweet = async () => {
@@ -32,9 +31,6 @@ const Profile = () => {
                 const profileInfo = await response.json();
                 setProfileTweets(Object.values(profileInfo.tweetsById));
                 setLoading(false);
-
-                console.log(profileInfo.tweetsById)
-
             } catch (err) {
                 console.log('Error Tweet Message', err);
             }

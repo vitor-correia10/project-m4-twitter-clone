@@ -10,9 +10,8 @@ const Tweet = ({
     tweet,
 }) => {
     const date = moment(tweet.timestamp).format("MMM Do");
-
+    console.log('Tweet', tweet)
     let mediaURL;
-    console.log('Tweet', mediaURL)
     if (tweet.media[0]) {
         mediaURL = tweet.media[0].url;
     }
@@ -21,62 +20,29 @@ const Tweet = ({
     if (tweet.retweetFrom) {
         retweet = tweet.retweetFrom.displayName;
     }
-
-    let likes;
-    if (tweet.numLikes > 0) {
-        likes = tweet.numLikes;
-    }
-
-    let retweets;
-    if (tweet.numRetweets >= 0) {
-        retweets = tweet.numRetweets;
-    }
     return (
         <>
-            <Wrapper>
-                {retweet && (
-                    <Retweet>
-                        <FiRepeat /> {retweet} retweeted
-                    </Retweet>
-                )}
-                <TweetData>
-                    <SmallAvatar avatarSrc={tweet.author.avatarSrc} />
-                    <TweetText>
-                        <TweetAuthor>
-                            {tweet.author.displayName}
-                            <Handle>@{tweet.author.handle} • {date}</Handle>
-                        </TweetAuthor>
-                        <TweetDescription>{tweet.status}</TweetDescription>
-                    </TweetText>
-                </TweetData>
-                <Feed>
-                    <TweetImage src={mediaURL} />
-                </Feed>
-                <Action>
-                    <ActionButtons>
-                        {likes}
-                        {retweets}
-                    </ActionButtons>
-                </Action>
-            </Wrapper>
+            {retweet && (
+                <Retweet>
+                    <FiRepeat /> {retweet} retweeted
+                </Retweet>
+            )}
+            <TweetData>
+                <SmallAvatar avatarSrc={tweet.author.avatarSrc} />
+                <TweetText>
+                    <TweetAuthor>
+                        {tweet.author.displayName}
+                        <Handle>@{tweet.author.handle} • {date}</Handle>
+                    </TweetAuthor>
+                    <TweetDescription>{tweet.status}</TweetDescription>
+                </TweetText>
+            </TweetData>
+            <Feed>
+                <TweetImage src={mediaURL} />
+            </Feed>
         </>
     )
 };
-
-const Wrapper = styled.div`
-  width: 100%;
-  padding: 10px;
-  border-bottom: 1px solid lightgray;
-
-  &:hover{
-      background: #F0F0F0;
-  }
-`
-const DisplayName = styled.div`
-    font-size: 15px;
-    line-height: 20px;
-    font-weight: bold;
-  `;
 
 const TweetData = styled.div`
     display: flex;
@@ -117,9 +83,6 @@ const Retweet = styled.div`
 
 const Feed = styled.div`
     padding-left: 60px;
-`
-const Action = styled.div`
-    padding-left: 40px;
 `
 
 export default Tweet;

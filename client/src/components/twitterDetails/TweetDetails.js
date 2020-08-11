@@ -16,9 +16,6 @@ const TweetDetails = () => {
     const [tweet, setTweet] = React.useState();
     const [loading, setLoading] = React.useState(true);
 
-
-    console.log('TweetDetails', tweetId);
-
     React.useEffect(() => {
         const fetchTweet = async () => {
             try {

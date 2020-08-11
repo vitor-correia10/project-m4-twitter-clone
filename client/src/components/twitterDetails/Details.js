@@ -7,7 +7,7 @@ import { SmallAvatar } from "../Avatar";
 import { ActionButtons } from '../buttons/ActionButtons';
 
 const Details = ({
-    tweet,
+    tweet
 }) => {
     const date = moment(tweet.timestamp).format("h:mm a • MMM Do YYYY •");
 
@@ -51,7 +51,6 @@ const Details = ({
                 <TweetImage src={mediaURL} />
                 <Date>{date} Critter web app</Date>
                 <ActionButtons>
-
                     {likes}
                     {retweets}
                 </ActionButtons>
