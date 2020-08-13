@@ -4,7 +4,6 @@ import { FiRepeat } from "react-icons/fi";
 import moment from 'moment';
 
 import { SmallAvatar } from "../Avatar";
-import { ActionButtons } from '../buttons/ActionButtons';
 
 const Tweet = ({
     tweet,

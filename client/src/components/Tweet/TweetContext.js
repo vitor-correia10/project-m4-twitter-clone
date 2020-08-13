@@ -9,35 +9,59 @@ export const TweetContext = React.createContext();
 export const TweetProvider = ({ children }) => {
     const [tweetById, setTweetById] = React.useState([]);
     const [tweetIds, setTweetIds] = React.useState([]);
-    const [numLikes, setNumLikes] = React.useState();
-    const [numRetweets, setNumRetweets] = React.useState();
-    const [isLiked, setIsLiked] = React.useState(false);
-    const [isRetweeted, setIsRetweeted] = React.useState(false);
     const [loading, setLoading] = React.useState(true);
 
     const handleToggleLike = (tweetId) => {
-        setIsLiked(!isLiked);
+        const isLiked = tweetById[tweetId].isLiked
+        fetch(`/api/tweet/${tweetId}/like`, {
+            "method": "PUT",
+            "headers": {
+                "content-type": "application/json"
+            },
+            "body": JSON.stringify({
+                "like": !isLiked
+            })
+        })
+            .then(response => {
 
-        !isLiked ? setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numLikes: tweetById[tweetId].numLikes + 1 } }) : setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numLikes: tweetById[tweetId].numLikes - 1 } });
-    };
+                console.log('***', isLiked)
+                !isLiked ? setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numLikes: tweetById[tweetId].isLiked + 1 } }) : setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numLikes: tweetById[tweetId].isLiked - 1 } });
 
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
     const handleToggleRetweet = (tweetId) => {
-        setIsRetweeted(!isRetweeted);
+        const isRetweeted = tweetById[tweetId].isRetweeted
+        fetch(`/api/tweet/${tweetId}/retweet`, {
+            "method": "PUT",
+            "headers": {
+                "content-type": "application/json"
+            },
+            "body": JSON.stringify({
+                "retweet": !isRetweeted
+            })
+        })
+            .then(response => {
+                !isRetweeted ? setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numRetweets: tweetById[tweetId].isRetweeted + 1 } }) : setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numRetweets: tweetById[tweetId].isRetweeted - 1 } });
+            })
+            .catch(err => {
+                console.log(err);
+            });
 
-        !isRetweeted ? setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numRetweets: tweetById[tweetId].numRetweets + 1 } }) : setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numRetweets: tweetById[tweetId].numRetweets - 1 } });
     };
 
     React.useEffect(() => {
         const fetchTweet = async () => {
             try {
+
                 const response = await fetch("/api/me/home-feed");
                 const tweet = await response.json();
-                console.log(tweet)
+                console.log('Fecth Tweet', tweet)
                 if (loading) {
                     setTweetById(tweet.tweetsById);
                     setTweetIds(tweet.tweetIds);
-                    setNumLikes(tweet.numLikes);
-                    setNumRetweets(tweet.numRetweets);
                     setLoading(false);
                 }
             } catch (err) {
@@ -54,19 +78,13 @@ export const TweetProvider = ({ children }) => {
             tweetById,
             tweetIds,
             loading,
-            isRetweeted,
-            isLiked,
-            numLikes,
-            numRetweets,
-            setNumLikes,
-            setNumRetweets,
             handleToggleLike,
             handleToggleRetweet,
         }}>
         {children}
     </TweetContext.Provider>
     );
-};
+}
 
 const Load = styled.div`
   display: flex;
@@ -79,5 +97,5 @@ const Load = styled.div`
   @keyframes spin {
     from {transform:rotate(0deg);}
     to {transform:rotate(360deg);}
-}
+    }
 `

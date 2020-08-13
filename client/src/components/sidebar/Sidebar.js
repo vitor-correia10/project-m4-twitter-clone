@@ -34,9 +34,14 @@ const Sidebar = () => {
 //Style
 const Wrapper = styled.aside`
     width: 25%;
-    min-width: 240px;
+    min-width: 160px;
     border-right: 1px solid lightgray;
-    padding: 20px 10px 20px 50px;
+    padding: 20px 5px 20px 5px;
+
+    @media (min-width: 800px){
+        padding: 20px 10px 20px 50px;
+        min-width: 220px;
+    }
 `;
 
 const Image = styled.img`

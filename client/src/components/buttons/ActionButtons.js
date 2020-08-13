@@ -7,20 +7,20 @@ import { TweetContext } from "../Tweet/TweetContext";
 export const ActionButtons = ({ numLikes, numRetweets, id }) => {
 
     const {
-        setNumLikes,
-        setNumRetweets,
-        isLiked,
-        isRetweeted,
         handleToggleLike,
         handleToggleRetweet,
+        tweetById,
     } = React.useContext(TweetContext);
 
-    console.log('Tweet Id in ActionButtons', id)
+    let likes;
+    if (numLikes > 0) {
+        likes = numLikes;
+    }
 
-    // React.useEffect(() => {
-    //     setNumLikes(numLikes)
-    //     setNumRetweets(numRetweets)
-    // }, [isLiked, isRetweeted]);
+    let retweet;
+    if (numRetweets > 0) {
+        retweet = numRetweets;
+    }
 
     return (
         <Wrapper>
@@ -32,14 +32,14 @@ export const ActionButtons = ({ numLikes, numRetweets, id }) => {
                 onClick={() => { handleToggleRetweet(id) }}
             >
                 <FiRepeat />
-                <ActionNumber> {numRetweets} </ActionNumber>
+                <ActionNumber> {retweet} </ActionNumber>
             </IconButton>
             <IconButton
                 hover="heart"
                 onClick={() => { handleToggleLike(id) }}
             >
                 <FiHeart />
-                <ActionNumber > {numLikes} </ActionNumber>
+                <ActionNumber > {likes} </ActionNumber>
             </IconButton>
             <IconButton>
                 <FiShare />

@@ -30,6 +30,7 @@ const Details = ({
     if (tweet.numRetweets >= 0) {
         retweets = tweet.numRetweets;
     }
+
     return (
         <>
             <Wrapper>
@@ -50,11 +51,11 @@ const Details = ({
                 <TweetDescription>{tweet.status}</TweetDescription>
                 <TweetImage src={mediaURL} />
                 <Date>{date} Critter web app</Date>
-                <ActionButtons>
-                    {likes}
-                    {retweets}
-                </ActionButtons>
-
+                <ActionButtons
+                    id={tweet.id}
+                    numLikes={tweet.numLikes}
+                    numRetweets={tweet.numRetweets}
+                />
             </Wrapper>
         </>
     )

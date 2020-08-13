@@ -1,15 +1,17 @@
 import React from "react";
 
+import { Link } from 'react-router-dom';
+
 import Header from "./Header";
 import Body from "./Body";
 import { FiLoader } from "react-icons/fi";
 
 import { CurrentUserContext } from "../CurrentUserContext";
-import { TweetContext } from "../Tweet/TweetContext";
 
 import { useParams } from "react-router-dom";
 
 import Tweet from "../Tweet/Tweet";
+import { ActionButtons } from '../buttons/ActionButtons';
 
 //style
 import styled from 'styled-components/macro';
@@ -17,7 +19,7 @@ import styled from 'styled-components/macro';
 const Profile = () => {
     const {
         currentUser,
-    } = React.useContext(CurrentUserContext, TweetContext);
+    } = React.useContext(CurrentUserContext);
 
     const { handle } = useParams();
 
@@ -57,7 +59,20 @@ const Profile = () => {
             />
             <Body>
                 {profileTweets.map((tweet) => {
-                    return <Tweet tweet={tweet} />
+                    return (
+                        <Wrapper>
+                            <Link to={`/tweet/${tweet.id}`}>
+                                <Tweet tweet={tweet} />
+                            </Link>
+                            <Action>
+                                <ActionButtons
+                                    id={tweet.id}
+                                    numLikes={tweet.numLikes}
+                                    numRetweets={tweet.numRetweets}
+                                />
+                            </Action>
+                        </Wrapper>
+                    )
                 })
                 }
             </Body>
@@ -65,6 +80,12 @@ const Profile = () => {
         </>
     )
 };
+
+const Wrapper = styled.div`
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid lightgray;
+`
 
 const Load = styled.div`
   display: flex;
@@ -78,6 +99,10 @@ const Load = styled.div`
     from {transform:rotate(0deg);}
     to {transform:rotate(360deg);}
 }
+`
+
+const Action = styled.div`
+    padding-left: 40px;
 `
 
 export default Profile;

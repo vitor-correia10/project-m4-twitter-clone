@@ -13,9 +13,8 @@ import styled from 'styled-components/macro';
 const HomeFeed = () => {
     const {
         tweetById,
-        tweetIds
+        tweetIds,
     } = React.useContext(TweetContext);
-
     return (
         <>
             <HomeHeader />
@@ -32,6 +31,7 @@ const HomeFeed = () => {
                                 id={id}
                                 numLikes={tweetById[id].numLikes}
                                 numRetweets={tweetById[id].numRetweets}
+                                isLiked={tweetById[id].isLiked}
                             />
                         </Action>
                     </Wrapper>
@@ -58,6 +58,20 @@ const Item = styled.div`
 
 const Action = styled.div`
     padding-left: 40px;
+`
+
+const Load = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  animation: spin 4s infinite linear;
+  height: 100vh;
+
+  @keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
 `
 
 export default HomeFeed;
