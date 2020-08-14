@@ -23,9 +23,8 @@ export const TweetProvider = ({ children }) => {
             })
         })
             .then(response => {
-
-                console.log('***', isLiked)
-                !isLiked ? setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numLikes: tweetById[tweetId].isLiked + 1 } }) : setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numLikes: tweetById[tweetId].isLiked - 1 } });
+                !isLiked ? setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numLikes: tweetById[tweetId].isLiked + 1 } }) :
+                    setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numLikes: tweetById[tweetId].isLiked - 1 } });
 
             })
             .catch(err => {
@@ -44,12 +43,12 @@ export const TweetProvider = ({ children }) => {
             })
         })
             .then(response => {
-                !isRetweeted ? setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numRetweets: tweetById[tweetId].isRetweeted + 1 } }) : setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numRetweets: tweetById[tweetId].isRetweeted - 1 } });
+                !isRetweeted ? setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numRetweets: tweetById[tweetId].isRetweeted + 1 } }) :
+                    setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numRetweets: tweetById[tweetId].isRetweeted - 1 } });
             })
             .catch(err => {
                 console.log(err);
             });
-
     };
 
     React.useEffect(() => {

@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components/macro";
 import moment from 'moment';
+import { CurrentUserContext } from "../CurrentUserContext";
+
+import { Link } from 'react-router-dom';
 
 import { Button1 } from "../buttons/Buttons";
-
 import { FiMapPin, FiCalendar } from "react-icons/fi";
 
 const Header = ({
@@ -18,6 +20,9 @@ const Header = ({
   numFollowers
 }) => {
   const date = moment(joined).format('MMMM YYYY');
+  const {
+    currentUser,
+  } = React.useContext(CurrentUserContext);
   return (
     <>
       <Banner src={bannerSrc} />
@@ -35,8 +40,12 @@ const Header = ({
           <Joined><FiCalendar /> Joined {date}</Joined>
         </Location>
         <Follow>
-          <Following>{numFollowing} </Following> Following
-          <Follower> {numFollowers} </Follower> Followers
+          <NavigationLink to={`/${currentUser.handle}/following`}>
+            <Following>{numFollowing} </Following> Following
+          </NavigationLink>
+          <NavigationLink to={`/${currentUser.handle}/followers`}>
+            <Follower> {numFollowers} </Follower> Followers
+          </NavigationLink>
         </Follow>
       </Wrapper>
     </>
@@ -72,7 +81,6 @@ const Name = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0px 16px;
 `;
 
 
@@ -89,14 +97,11 @@ const Joined = styled.span`
   color: darkgray;
 `
 
-const Follow = styled.p`
-  color: darkgray;
-  margin: 10px auto;
-`
 const Following = styled.span`
   font-weight: 600;
   color: black;
 `
+
 const Follower = styled.span`
   margin-left: 20px;
   font-weight: 600;
@@ -115,4 +120,20 @@ const Username = styled.div`
     color: rgb(101, 119, 134);
   `;
 
+const List = styled.li`
+    margin-bottom: 15px;
+    padding: 5px;
+    
+`
+const Follow = styled.div`
+    display: flex;
+    margin: 10px auto;
+    color: darkgray;
+`
+
+const NavigationLink = styled(Link)`
+  &:hover{
+    text-decoration: underline;
+  }
+`
 export default Header;

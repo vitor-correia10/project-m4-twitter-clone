@@ -3,12 +3,17 @@ import React from "react";
 import { NavLink } from 'react-router-dom';
 import { COLORS } from "../styles/Constants";
 import { Button2 } from "../buttons/Buttons";
+import { CurrentUserContext } from "../CurrentUserContext";
+
 //style
 import styled from 'styled-components/macro';
 import Logo from "../../assets/logo.svg";
 import { FiHome, FiBell, FiBookmark, FiUser } from "react-icons/fi";
 
 const Sidebar = () => {
+    const {
+        currentUser,
+    } = React.useContext(CurrentUserContext);
     return (
         <Wrapper>
             <Image src={Logo} alt="critter logo" />
@@ -17,13 +22,13 @@ const Sidebar = () => {
                     <NavigationLink to="/" exact activeClassName="selected"> <FiHome /> Home</NavigationLink>
                 </List>
                 <List>
-                    <NavigationLink to="/profile" exact activeClassName="selected"> <FiUser /> Profile</NavigationLink>
+                    <NavigationLink to={`/${currentUser.handle}`} activeClassName="selected"> <FiUser /> Profile</NavigationLink>
                 </List>
                 <List>
-                    <NavigationLink to="/notifications" exact activeClassName="selected"> <FiBell /> Notifications</NavigationLink>
+                    <NavigationLink to="/notifications" activeClassName="selected"> <FiBell /> Notifications</NavigationLink>
                 </List>
                 <List>
-                    <NavigationLink to="/bookmarks" exact activeClassName="selected"> <FiBookmark /> Bookmarks</NavigationLink>
+                    <NavigationLink to="/bookmarks" activeClassName="selected"> <FiBookmark /> Bookmarks</NavigationLink>
                 </List>
             </Navigation>
             <Button2>Meow</Button2>
@@ -64,11 +69,11 @@ const List = styled.li`
 
 const NavigationLink = styled(NavLink)`
   text-decoration: none;
+  padding: 5px;
 
-  &.hover{
-        background: black;
-        padding: 10px;
-        color: white;
+  &:hover{
+        background: ${COLORS.primaryOpacity};
+        border-radius: 20px;
     }
 
   &.selected{

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { NavLink } from 'react-router-dom';
-
+import { CurrentUserContext } from "../CurrentUserContext";
 
 //style
 import styled from 'styled-components/macro';
@@ -9,18 +9,21 @@ import { COLORS } from "../styles/Constants";
 
 
 const Navigation = () => {
+    const {
+        currentUser,
+    } = React.useContext(CurrentUserContext);
     return (
         <Wrapper>
             <List>
-                <NavigationLink to="/profile" exact activeClassName="selected">Tweets</NavigationLink>
+                <NavigationLink to={`/${currentUser.handle}`} activeClassName="selected">Tweets</NavigationLink>
             </List>
             <List>
-                <NavigationLink to="/media" exact activeClassName="selected">Media</NavigationLink>
+                <NavigationLink to={`/${currentUser.handle}/media`} activeClassName="selected">Media</NavigationLink>
             </List>
             <List>
-                <NavigationLink to="/likes" exact activeClassName="selected">Likes</NavigationLink>
+                <NavigationLink to={`/${currentUser.handle}/likes`} activeClassName="selected">Likes</NavigationLink>
             </List>
-        </Wrapper>
+        </Wrapper >
     )
 };
 

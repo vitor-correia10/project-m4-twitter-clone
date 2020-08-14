@@ -21,8 +21,6 @@ const Profile = () => {
         currentUser,
     } = React.useContext(CurrentUserContext);
 
-    const { handle } = useParams();
-
     const [profileTweets, setProfileTweets] = React.useState();
     const [loading, setLoading] = React.useState(true);
 
@@ -42,7 +40,7 @@ const Profile = () => {
     if (loading) {
         return <Load> <FiLoader /></Load>
     }
-
+    console.log('Profile', currentUser)
     return (
         <>
             <Header

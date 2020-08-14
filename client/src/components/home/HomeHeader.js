@@ -9,37 +9,50 @@ import Head from "../Head";
 const HomeHeader = () => {
     const {
         currentUser
-
     } = React.useContext(CurrentUserContext);
 
     const [countCharacters, setCountCharacters] = React.useState(280);
+    const [status, setStatus] = React.useState('');
+    const submit = e => {
+        e.preventDefault()
+        const requestOptions = {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: { status } })
+        };
 
-    const recalculate = (e) => {
+        fetch("/api/tweet", requestOptions)
+            .then(response => response.json())
+            .then((data => setStatus(data.status))
+            )
+
         if (countCharacters >= 0) {
             setCountCharacters(countCharacters - e.target.value.length);
             console.log(countCharacters)
         }
     }
+
+    console.log(status);
     return (
         <>
             <Head>
                 Home
             </Head>
-            <Text>
+            <Form>
                 <Message>
                     <SmallAvatar avatarSrc={currentUser.avatarSrc} />
-                    <TextArea onChange={recalculate} placeholder="What's happening?" />
+                    <TextArea name="status" value={status} onChange={e => setStatus(e.target.value)} placeholder="What's happening?" />
                 </Message>
                 <SendMessage>
                     {countCharacters}
-                    <Button1> Meow </Button1>
+                    <Button1 type="submit"> Meow </Button1>
                 </SendMessage>
-            </Text>
+            </Form>
         </>
     )
 }
 
-const Text = styled.div`
+const Form = styled.form`
     border-bottom: 8px solid lightgray;
     padding: 10px;
 `
