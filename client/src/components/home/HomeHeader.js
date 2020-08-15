@@ -26,13 +26,14 @@ const HomeHeader = () => {
             .then((data => setStatus(data.status))
             )
 
-        if (countCharacters >= 0) {
-            setCountCharacters(countCharacters - e.target.value.length);
-            console.log(countCharacters)
-        }
-    }
+        setCountCharacters(countCharacters - status.length);
+        console.log('Counting characters', countCharacters)
 
-    console.log(status);
+    }
+    console.log('Length', status.length);
+    console.log('# Characters', countCharacters - status.length);
+    let checkCharacters = countCharacters - status.length;
+
     return (
         <>
             <Head>
@@ -43,9 +44,18 @@ const HomeHeader = () => {
                     <SmallAvatar avatarSrc={currentUser.avatarSrc} />
                     <TextArea name="status" value={status} onChange={e => setStatus(e.target.value)} placeholder="What's happening?" />
                 </Message>
-                <SendMessage>
-                    {countCharacters}
-                    <Button1 type="submit"> Meow </Button1>
+                <SendMessage
+                    style={{
+                        color: (checkCharacters < 0) ? 'red'
+                            : (checkCharacters <= 55) ? 'yellow' : 'darkgray',
+                    }}>
+                    {checkCharacters < 0 ? 0 : checkCharacters}
+                    <Button1
+                        type="submit"
+                        disabled={checkCharacters < 0}
+                    >
+                        Meow
+                    </Button1>
                 </SendMessage>
             </Form>
         </>
@@ -73,7 +83,6 @@ const SendMessage = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    color: darkgray;
     font-size: 14px;
 `
 

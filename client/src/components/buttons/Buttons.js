@@ -28,6 +28,7 @@ const SmallButton = styled.button`
     font-size: 14px;
     margin-top: 5px;
     margin-left: 10px;
+    cursor: pointer;
 `
 
 const MediumButton = styled.button`
@@ -40,4 +41,5 @@ const MediumButton = styled.button`
     color: white;
     font-size: 16px;
     margin-top: 5px;
+    cursor: pointer;
 `
