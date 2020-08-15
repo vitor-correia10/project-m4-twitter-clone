@@ -21,7 +21,6 @@ export const ActionButtons = ({ numLikes, numRetweets, id }) => {
     if (numRetweets > 0) {
         retweet = numRetweets;
     }
-
     return (
         <Wrapper>
             <IconButton>
@@ -30,6 +29,9 @@ export const ActionButtons = ({ numLikes, numRetweets, id }) => {
             <IconButton
                 hover="retweet"
                 onClick={() => { handleToggleRetweet(id) }}
+                style={{
+                    color: (tweetById[id].isRetweeted) ? 'green' : 'black',
+                }}
             >
                 <FiRepeat />
                 <ActionNumber> {retweet} </ActionNumber>
@@ -37,9 +39,14 @@ export const ActionButtons = ({ numLikes, numRetweets, id }) => {
             <IconButton
                 hover="heart"
                 onClick={() => { handleToggleLike(id) }}
+                style={{
+                    color: (tweetById[id].isLiked) ? 'red' : 'black',
+                }}
             >
                 <FiHeart />
-                <ActionNumber > {likes} </ActionNumber>
+                <ActionNumber>
+                    {likes}
+                </ActionNumber>
             </IconButton>
             <IconButton>
                 <FiShare />
@@ -73,5 +80,4 @@ const IconButton = styled.button`
 const ActionNumber = styled.span`
     font-size: 14px;
     padding-left: 5px;
-    color: darkgray;
 `

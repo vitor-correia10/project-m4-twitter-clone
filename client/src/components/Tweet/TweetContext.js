@@ -10,6 +10,8 @@ export const TweetProvider = ({ children }) => {
     const [tweetById, setTweetById] = React.useState([]);
     const [tweetIds, setTweetIds] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
+    const [toggleLike, setToggleLike] = React.useState(false);
+    const [toggleRetweet, setToggleRetweet] = React.useState(false);
 
     const handleToggleLike = (tweetId) => {
         const isLiked = tweetById[tweetId].isLiked
@@ -19,16 +21,14 @@ export const TweetProvider = ({ children }) => {
                 "content-type": "application/json"
             },
             "body": JSON.stringify({
-                "like": !isLiked
+                like: !isLiked
             })
         })
             .then(response => {
-                !isLiked ? setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numLikes: tweetById[tweetId].isLiked + 1 } }) :
-                    setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numLikes: tweetById[tweetId].isLiked - 1 } });
-
+                setToggleLike(!toggleLike);
             })
             .catch(err => {
-                console.log(err);
+                console.log('Error', err);
             });
     }
     const handleToggleRetweet = (tweetId) => {
@@ -39,12 +39,11 @@ export const TweetProvider = ({ children }) => {
                 "content-type": "application/json"
             },
             "body": JSON.stringify({
-                "retweet": !isRetweeted
+                retweet: !isRetweeted
             })
         })
             .then(response => {
-                !isRetweeted ? setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numRetweets: tweetById[tweetId].isRetweeted + 1 } }) :
-                    setTweetById({ ...tweetById, [tweetId]: { ...tweetById[tweetId], numRetweets: tweetById[tweetId].isRetweeted - 1 } });
+                setToggleRetweet(!toggleRetweet);
             })
             .catch(err => {
                 console.log(err);
@@ -54,11 +53,9 @@ export const TweetProvider = ({ children }) => {
     React.useEffect(() => {
         const fetchTweet = async () => {
             try {
-
                 const response = await fetch("/api/me/home-feed");
                 const tweet = await response.json();
-                console.log('Fecth Tweet', tweet)
-                if (loading) {
+                if (tweet !== undefined) {
                     setTweetById(tweet.tweetsById);
                     setTweetIds(tweet.tweetIds);
                     setLoading(false);
@@ -68,7 +65,14 @@ export const TweetProvider = ({ children }) => {
             }
         };
         fetchTweet();
-    }, []);
+    }, [toggleLike, toggleRetweet]);
+
+    const addToTweetById = (data) => {
+        let tweetDataId = data.tweet.id;
+        setTweetById({ ...tweetById, [tweetDataId]: data.tweet })
+        setTweetIds([...tweetIds, tweetDataId])
+    };
+
     if (loading) {
         return <Load> <FiLoader /></Load>
     }
@@ -79,6 +83,11 @@ export const TweetProvider = ({ children }) => {
             loading,
             handleToggleLike,
             handleToggleRetweet,
+            addToTweetById,
+            toggleLike,
+            setToggleLike,
+            toggleRetweet,
+            setToggleRetweet
         }}>
         {children}
     </TweetContext.Provider>

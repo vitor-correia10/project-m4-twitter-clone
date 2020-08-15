@@ -16,6 +16,8 @@ import Notifications from "./notifications/Notifications";
 import Profile from "./profile/Profile";
 import TweetDetails from "./twitterDetails/TweetDetails";
 import Sidebar from "./sidebar/Sidebar";
+import Followers from "./follow/Followers";
+import Following from "./follow/Following";
 
 //Style
 import styled from "styled-components/macro";
@@ -49,15 +51,21 @@ const App = () => {
               <Route path="/tweet/:tweetId">
                 <TweetDetails />
               </Route>
-              <Route path="/:profile">
+              <Route exact path="/:profile">
                 <Profile />
+              </Route>
+              <Route path="/:profile/followers">
+                <Followers />
+              </Route>
+              <Route path="/:profile/following">
+                <Following />
               </Route>
             </Switch>
           </Main>
           <SidebarRight />
         </Wrapper>
       }
-    </Router>
+    </Router >
   )
 };
 

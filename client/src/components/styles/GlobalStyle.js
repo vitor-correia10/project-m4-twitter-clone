@@ -6,7 +6,6 @@ export default createGlobalStyle`
     *:after {
         box-sizing: border-box;
         -webkit-font-smoothing: antialiased;
-        color: black;
     }
 
     /* http://meyerweb.com/eric/tools/css/reset/ 

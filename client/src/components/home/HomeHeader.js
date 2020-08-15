@@ -4,55 +4,64 @@ import { Button1 } from "../buttons/Buttons";
 import { SmallAvatar } from "../Avatar";
 import { CurrentUserContext } from "../CurrentUserContext";
 import Head from "../Head";
+import { TweetContext } from "../Tweet/TweetContext";
 
+const NUMCHATACTERS = 280;
 
 const HomeHeader = () => {
     const {
         currentUser
     } = React.useContext(CurrentUserContext);
+    const {
+        addToTweetById
+    } = React.useContext(TweetContext);
 
-    const [countCharacters, setCountCharacters] = React.useState(280);
+    const [countCharacters, setCountCharacters] = React.useState(NUMCHATACTERS);
     const [status, setStatus] = React.useState('');
+
     const submit = e => {
         e.preventDefault()
         const requestOptions = {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ status: { status } })
+            body: JSON.stringify({ status: status })
         };
 
         fetch("/api/tweet", requestOptions)
             .then(response => response.json())
-            .then((data => setStatus(data.status))
+            .then((data => {
+                setStatus(data.tweet.status)
+                addToTweetById(data);
+            })
             )
 
         setCountCharacters(countCharacters - status.length);
-        console.log('Counting characters', countCharacters)
-
     }
-    console.log('Length', status.length);
-    console.log('# Characters', countCharacters - status.length);
-    let checkCharacters = countCharacters - status.length;
+    React.useEffect(() => {
+        setCountCharacters(NUMCHATACTERS - status.length);
+    }, [status]);
+
 
     return (
         <>
             <Head>
                 Home
             </Head>
-            <Form>
+            <Form onSubmit={submit}>
                 <Message>
                     <SmallAvatar avatarSrc={currentUser.avatarSrc} />
-                    <TextArea name="status" value={status} onChange={e => setStatus(e.target.value)} placeholder="What's happening?" />
+                    <TextArea name="status" value={status} onChange={e => setStatus(e.target.value)}
+                        placeholder="What's happening?" />
                 </Message>
                 <SendMessage
                     style={{
-                        color: (checkCharacters < 0) ? 'red'
-                            : (checkCharacters <= 55) ? 'yellow' : 'darkgray',
+                        color: (countCharacters < 0) ? 'red'
+                            : (countCharacters <= 55) ? 'yellow' : 'darkgray',
                     }}>
-                    {checkCharacters < 0 ? 0 : checkCharacters}
+                    {countCharacters < 0 ? 0 : countCharacters}
                     <Button1
                         type="submit"
-                        disabled={checkCharacters < 0}
+                        disabled={countCharacters < 0}
                     >
                         Meow
                     </Button1>

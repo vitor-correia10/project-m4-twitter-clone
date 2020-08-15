@@ -40,7 +40,6 @@ const Profile = () => {
     if (loading) {
         return <Load> <FiLoader /></Load>
     }
-    console.log('Profile', currentUser)
     return (
         <>
             <Header
