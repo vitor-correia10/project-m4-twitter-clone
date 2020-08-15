@@ -88,5 +88,6 @@ const Wrapper = styled.div`
 
 const Main = styled.div`
   width: 65%;
+  min-height: 100vh;
 `
 export default App;

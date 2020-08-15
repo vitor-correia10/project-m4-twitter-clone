@@ -8,8 +8,6 @@ import { FiLoader } from "react-icons/fi";
 
 import { CurrentUserContext } from "../CurrentUserContext";
 
-import { useParams } from "react-router-dom";
-
 import Tweet from "../Tweet/Tweet";
 import { ActionButtons } from '../buttons/ActionButtons';
 
@@ -22,22 +20,24 @@ const Profile = () => {
     } = React.useContext(CurrentUserContext);
 
     const [profileTweets, setProfileTweets] = React.useState();
-    const [loading, setLoading] = React.useState(true);
+    const [loadingProfile, setLoadingProfile] = React.useState(true);
 
     React.useEffect(() => {
         const fetchTweet = async () => {
             try {
-                const response = await fetch(`/api/${currentUser.handle}/feed`);
-                const profileInfo = await response.json();
-                setProfileTweets(Object.values(profileInfo.tweetsById));
-                setLoading(false);
+                if (loadingProfile) {
+                    const response = await fetch(`/api/${currentUser.handle}/feed`);
+                    const profileInfo = await response.json();
+                    setProfileTweets(Object.values(profileInfo.tweetsById));
+                    setLoadingProfile(false);
+                }
             } catch (err) {
                 console.log('Error Tweet Message', err);
             }
         };
         fetchTweet();
     }, []);
-    if (loading) {
+    if (loadingProfile) {
         return <Load> <FiLoader /></Load>
     }
     return (
@@ -73,7 +73,6 @@ const Profile = () => {
                 })
                 }
             </Body>
-
         </>
     )
 };

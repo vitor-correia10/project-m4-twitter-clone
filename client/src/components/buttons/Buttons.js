@@ -19,6 +19,14 @@ export const Button2 = ({ children }) => {
     )
 }
 
+export const Button3 = ({ children }) => {
+    return (
+        <SmallButtonWithoutBorder>
+            {children}
+        </SmallButtonWithoutBorder>
+    )
+}
+
 const SmallButton = styled.button`
     background: ${COLORS.primary};
     padding: 10px;
@@ -42,4 +50,14 @@ const MediumButton = styled.button`
     font-size: 16px;
     margin-top: 5px;
     cursor: pointer;
+`
+
+const SmallButtonWithoutBorder = styled.button`
+    background: ${COLORS.primary};
+    padding: 10px;
+    font-weight: 600;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    border: none;
 `
