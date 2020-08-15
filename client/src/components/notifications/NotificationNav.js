@@ -39,16 +39,16 @@ const Image = styled.img`
 
 const List = styled.li`
     padding: 15px;
+    width: 100%;
+    text-align: center;
+
+    &:hover{
+        background: ${COLORS.primaryOpacity};
+    }
 `
 
 const NavigationLink = styled(NavLink)`
   text-decoration: none;
-
-  &.hover{
-        background: black;
-        padding: 10px;
-        color: white;
-    }
 
   &.selected{
     color: ${COLORS.primary};

@@ -15,7 +15,7 @@ const Navigation = () => {
     return (
         <Wrapper>
             <List>
-                <NavigationLink to={`/${currentUser.handle}`} activeClassName="selected">Tweets</NavigationLink>
+                <NavigationLink to={`/${currentUser.handle}`} exact activeClassName="selected">Tweets</NavigationLink>
             </List>
             <List>
                 <NavigationLink to={`/${currentUser.handle}/media`} activeClassName="selected">Media</NavigationLink>
@@ -45,18 +45,21 @@ const Image = styled.img`
 `
 
 const List = styled.li`
-    margin-bottom: 15px;
-    padding: 5px;
+    padding: 10px 5px;
+    width: 100%;
+    text-align: center;
+    
+    &:hover{
+        background: ${COLORS.primaryOpacity};
+    }
+
+    &.selected{
+        text-decoration: underline;
+    }
 `
 
 const NavigationLink = styled(NavLink)`
   text-decoration: none;
-
-  &.hover{
-        background: black;
-        padding: 10px;
-        color: white;
-    }
 
   &.selected{
     color: ${COLORS.primary};
