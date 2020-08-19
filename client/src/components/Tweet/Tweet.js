@@ -44,7 +44,7 @@ const Tweet = ({
 
 const TweetData = styled.div`
     display: flex;
-    overflow: hidden;
+    word-break: break-all;
 `
 
 const TweetAuthor = styled.p`
