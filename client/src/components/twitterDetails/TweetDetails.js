@@ -9,6 +9,7 @@ import Details from "./Details";
 import Head from "../Head";
 import GoBack from "../GoBack";
 
+import { ActionButtons } from '../buttons/ActionButtons';
 
 const TweetDetails = () => {
     const { tweetId } = useParams();
@@ -16,17 +17,17 @@ const TweetDetails = () => {
     const [tweet, setTweet] = React.useState();
     const [loading, setLoading] = React.useState(true);
 
+    const fetchTweet = async () => {
+        try {
+            const response = await fetch(`/api/tweet/${tweetId}`);
+            const tweetInfo = await response.json();
+            setTweet(tweetInfo.tweet);
+            setLoading(false);
+        } catch (err) {
+            console.log('Error Tweet Message', err);
+        }
+    };
     React.useEffect(() => {
-        const fetchTweet = async () => {
-            try {
-                const response = await fetch(`/api/tweet/${tweetId}`);
-                const tweetInfo = await response.json();
-                setTweet(tweetInfo.tweet);
-                setLoading(false);
-            } catch (err) {
-                console.log('Error Tweet Message', err);
-            }
-        };
         fetchTweet();
     }, []);
     if (loading) {
@@ -40,7 +41,15 @@ const TweetDetails = () => {
             </Head>
             <Details
                 tweet={tweet}
-            />
+            >
+                <ActionButtons
+                    id={tweet.id}
+                    numLikes={tweet.numLikes}
+                    numRetweets={tweet.numRetweets}
+                    onRetweet={fetchTweet}
+                    onLike={fetchTweet}
+                />
+            </Details>
         </>
     )
 };

@@ -13,42 +13,40 @@ export const TweetProvider = ({ children }) => {
     const [toggleLike, setToggleLike] = React.useState(false);
     const [toggleRetweet, setToggleRetweet] = React.useState(false);
 
-    const handleToggleLike = (tweetId) => {
+    const handleToggleLike = async (tweetId) => {
         const isLiked = tweetById[tweetId].isLiked
-        fetch(`/api/tweet/${tweetId}/like`, {
-            "method": "PUT",
-            "headers": {
-                "content-type": "application/json"
-            },
-            "body": JSON.stringify({
-                like: !isLiked
+        try {
+            const response = await fetch(`/api/tweet/${tweetId}/like`, {
+                "method": "PUT",
+                "headers": {
+                    "content-type": "application/json"
+                },
+                "body": JSON.stringify({
+                    like: !isLiked
+                })
             })
-        })
-            .then(response => {
-                setToggleLike(!toggleLike);
-            })
-            .catch(err => {
-                console.log('Error', err);
-            });
+            setToggleLike(!toggleLike);
+        } catch (err) {
+            console.log('Like Error', err);
+        };
     }
-    const handleToggleRetweet = (tweetId) => {
+    const handleToggleRetweet = async (tweetId) => {
         const isRetweeted = tweetById[tweetId].isRetweeted
-        fetch(`/api/tweet/${tweetId}/retweet`, {
-            "method": "PUT",
-            "headers": {
-                "content-type": "application/json"
-            },
-            "body": JSON.stringify({
-                retweet: !isRetweeted
+        try {
+            const response = await fetch(`/api/tweet/${tweetId}/retweet`, {
+                "method": "PUT",
+                "headers": {
+                    "content-type": "application/json"
+                },
+                "body": JSON.stringify({
+                    retweet: !isRetweeted
+                })
             })
-        })
-            .then(response => {
-                setToggleRetweet(!toggleRetweet);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    };
+            setToggleRetweet(!toggleRetweet);
+        } catch (err) {
+            console.log('Retweet Error', err);
+        };
+    }
 
     React.useEffect(() => {
         const fetchTweet = async () => {

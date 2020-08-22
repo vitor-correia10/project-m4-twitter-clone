@@ -22,24 +22,25 @@ const Profile = () => {
     const [profileTweets, setProfileTweets] = React.useState();
     const [loadingProfile, setLoadingProfile] = React.useState(true);
 
-    React.useEffect(() => {
-        const fetchTweet = async () => {
-            try {
-                if (loadingProfile) {
-                    const response = await fetch(`/api/${currentUser.handle}/feed`);
-                    const profileInfo = await response.json();
-                    setProfileTweets(Object.values(profileInfo.tweetsById));
-                    setLoadingProfile(false);
-                }
-            } catch (err) {
-                console.log('Error Tweet Message', err);
+    const fetchTweet = async () => {
+        try {
+            const response = await fetch(`/api/${currentUser.handle}/feed`);
+            const profileInfo = await response.json();
+            if (profileInfo !== undefined) {
+                setProfileTweets(Object.values(profileInfo.tweetsById));
+                setLoadingProfile(false);
             }
-        };
+        } catch (err) {
+            console.log('Error Tweet Message', err);
+        }
+    };
+    React.useEffect(() => {
         fetchTweet();
     }, []);
     if (loadingProfile) {
         return <Load> <FiLoader /></Load>
     }
+
     return (
         <>
             <Header
@@ -66,6 +67,7 @@ const Profile = () => {
                                     id={tweet.id}
                                     numLikes={tweet.numLikes}
                                     numRetweets={tweet.numRetweets}
+                                    onLike={fetchTweet}
                                 />
                             </Action>
                         </Wrapper>

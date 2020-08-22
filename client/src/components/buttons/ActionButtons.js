@@ -4,7 +4,7 @@ import { FiHeart, FiMessageCircle, FiRepeat, FiShare } from "react-icons/fi";
 
 import { TweetContext } from "../Tweet/TweetContext";
 
-export const ActionButtons = ({ numLikes, numRetweets, id }) => {
+export const ActionButtons = ({ numLikes, numRetweets, id, onLike, onRetweet }) => {
 
     const {
         handleToggleLike,
@@ -21,6 +21,7 @@ export const ActionButtons = ({ numLikes, numRetweets, id }) => {
     if (numRetweets > 0) {
         retweet = numRetweets;
     }
+
     return (
         <Wrapper>
             <IconButton>
@@ -28,7 +29,12 @@ export const ActionButtons = ({ numLikes, numRetweets, id }) => {
             </IconButton>
             <IconButton
                 hover="retweet"
-                onClick={() => { handleToggleRetweet(id) }}
+                onClick={async () => {
+                    handleToggleRetweet(id)
+                    if (onRetweet) {
+                        await onRetweet();
+                    }
+                }}
                 style={{
                     color: (tweetById[id].isRetweeted) ? 'green' : 'black',
                 }}
@@ -38,7 +44,12 @@ export const ActionButtons = ({ numLikes, numRetweets, id }) => {
             </IconButton>
             <IconButton
                 hover="heart"
-                onClick={() => { handleToggleLike(id) }}
+                onClick={async () => {
+                    await handleToggleLike(id)
+                    if (onLike) {
+                        await onLike();
+                    }
+                }}
                 style={{
                     color: (tweetById[id].isLiked) ? 'red' : 'black',
                 }}
@@ -79,5 +90,5 @@ const IconButton = styled.button`
 
 const ActionNumber = styled.span`
     font-size: 14px;
-    padding-left: 5px;
+    padding-left: 3px;
 `
