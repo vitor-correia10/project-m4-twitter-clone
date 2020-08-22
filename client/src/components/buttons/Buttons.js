@@ -3,9 +3,12 @@ import styled from "styled-components/macro";
 
 import { COLORS } from "../styles/Constants";
 
-export const Button1 = ({ children }) => {
+export const Button1 = ({ children, disabled }) => {
+    console.log('Disabled', disabled)
     return (
-        <SmallButton>
+        <SmallButton
+            disabled={disabled}
+        >
             {children}
         </SmallButton>
     )

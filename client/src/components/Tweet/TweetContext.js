@@ -70,7 +70,7 @@ export const TweetProvider = ({ children }) => {
     const addToTweetById = (data) => {
         let tweetDataId = data.tweet.id;
         setTweetById({ ...tweetById, [tweetDataId]: data.tweet })
-        setTweetIds([...tweetIds, tweetDataId])
+        setTweetIds([tweetDataId, ...tweetIds])
     };
 
     if (loading) {

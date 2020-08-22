@@ -20,6 +20,7 @@ const HomeHeader = () => {
     const [status, setStatus] = React.useState('');
 
     const submit = e => {
+        setStatus("")
         e.preventDefault()
         const requestOptions = {
             method: "POST",
@@ -30,7 +31,7 @@ const HomeHeader = () => {
         fetch("/api/tweet", requestOptions)
             .then(response => response.json())
             .then((data => {
-                setStatus(data.tweet.status)
+                data.tweet.author = currentUser;
                 addToTweetById(data);
             })
             )

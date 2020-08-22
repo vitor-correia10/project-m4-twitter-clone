@@ -21,16 +21,6 @@ const Details = ({
         retweet = tweet.retweetFrom.displayName;
     }
 
-    let likes;
-    if (tweet.numLikes > 0) {
-        likes = tweet.numLikes;
-    }
-
-    let retweets;
-    if (tweet.numRetweets >= 0) {
-        retweets = tweet.numRetweets;
-    }
-
     return (
         <>
             <Wrapper>

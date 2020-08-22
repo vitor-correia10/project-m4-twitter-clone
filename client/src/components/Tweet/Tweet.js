@@ -25,7 +25,7 @@ const Tweet = ({
                     <FiRepeat /> {retweet} retweeted
                 </Retweet>
             )}
-            <TweetData>
+            {tweet && (<TweetData>
                 <SmallAvatar avatarSrc={tweet.author.avatarSrc} />
                 <TweetText>
                     <TweetAuthor>
@@ -35,6 +35,7 @@ const Tweet = ({
                     <TweetDescription>{tweet.status}</TweetDescription>
                 </TweetText>
             </TweetData>
+            )}
             <Feed>
                 <TweetImage src={mediaURL} />
             </Feed>

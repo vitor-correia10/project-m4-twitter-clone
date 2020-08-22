@@ -46,6 +46,7 @@ const Wrapper = styled.div`
   width: 100%;
   padding: 10px;
   border-bottom: 1px solid lightgray;
+  word-break: break-all;
 
   &:hover{
       background: #F0F0F0;
